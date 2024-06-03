@@ -32,7 +32,8 @@ window.onload = function init() {
 
     var menu = document.getElementById("menuFuncao");
     var menuColor = document.getElementById("menuColor");
-    var button = document.getElementById("Button1");
+    var desenhar = document.getElementById("buttonDraw");
+    var clear = document.getElementById("buttonClear");
 
     menu.addEventListener("click", function() {
         option = menu.selectedIndex;
@@ -56,12 +57,26 @@ window.onload = function init() {
         console.log(tColor);
     });
 
-    button.addEventListener("click", function(){
+    desenhar.addEventListener("click", function(){
         numPolygons++;
         numIndices[numPolygons] = 0;
         start[numPolygons] = indexPoligono;
         render();
     });
+
+    clear.addEventListener("click", function(){
+        pointsIndividuais = [];
+        pointsLinhas = [];
+        numPolygons = 0;
+        numIndices = [];
+        numIndices[0] = 0;
+        start = [0];
+        indexPoligono = 0;
+        indexPonto = 0;
+        indexLinha = 0;
+        render();
+    });
+
 
     gl = WebGLUtils.setupWebGL(canvas);
     if (!gl) { alert("WebGL isn't available"); }
